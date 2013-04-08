@@ -37,10 +37,7 @@ class AuthorityL4ServiceProvider extends ServiceProvider {
             $authority = new Authority($user);
             $fn = $app['config']->get('authority-l4::initialize', null);
 
-            if($fn && $user)
-            {
-                $init = $fn($authority, $user);
-            }
+            if($fn && $user) $fn($authority, $user);
 
             return $authority;
         });
