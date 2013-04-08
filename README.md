@@ -5,7 +5,7 @@
 Add Authority to your composer.json file
 
 	require : {
-        'machuga/authority' : 'dev-develop'
+        'machuga/authority-l4' : 'dev-master'
     }
 
 Add the Authority service provider to your app config
@@ -13,20 +13,20 @@ Add the Authority service provider to your app config
 	//app/config/app.php
 	'Machuga\AuthorityL4\AuthorityL4ServiceProvider',
 
-Add the alias to your app config **optional**
+**(optional)** Add the alias to your app config
 
 	//app/config/app.php
 	'Authority' => 'Machuga\AuthorityL4\Facades\Authority',
 
-Publish the Authority Configuration File **optional**
+**(optional)** Publish the Authority Configuration File
 
 	php artisan config:publish machuga/authority-l4
 
-Run the Authority migrations **optional**
+**(optional)** Run the Authority migrations
 
 	php artisan migrate --package="machuga/authority-l4"
 
-Add the following methods to your User Model **optional**
+**(optional)** Add the following methods to your User Model
 
 	//app/models/User.php
 	public function roles()
