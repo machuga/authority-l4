@@ -1,46 +1,48 @@
+#Authority - A simple and flexible authorization system for PHP
 
-## Service Provider
-'Machuga\AuthorityL4\AuthorityL4ServiceProvider',
+##Installation
+Add Authority to your composer.json file
+	require : {
+        'machuga/authority' : 'dev-develop'
+    }
 
-##Alias
-'Authority'       => 'Machuga\AuthorityL4\Facades\Authority',
+Add the Authority service provider to your app config
+	//app/config/app.php
+	'Machuga\AuthorityL4\AuthorityL4ServiceProvider',
 
-## Publish Config file
-php artisan config:publish vendor/package
+Add the alias to your app config **optional**
+	//app/config/app.php
+	'Authority' => 'Machuga\AuthorityL4\Facades\Authority',
 
-## User Model
+Publish the Authority Configuration File **optional**
+	php artisan config:publish machuga/authority-l4
+
+Run the Authority migrations **optional**
+	php artisan migrate --package="machuga/authority-l4"
+
+Add the following methods to your User Model **optional**
+	//app/models/User.php
 	public function roles()
     {
-        return $this->has_many_and_belongs_to('Role', 'role_user');
+        return $this->belongsToMany('Role');
     }
 
-    public function has_role($key)
-    {
-        foreach($this->roles as $role)
-        {
-            if($role->name == $key)
-            {
-                return true;
-            }
-        }
+	public function hasRole($key)
+	{
+		foreach($this->roles as $role)
+		{
+			if($role->name == $key)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 
-        return false;
-    }
-
-    public function has_any_role($keys)
-    {
-        if( ! is_array($keys))
-        {
-            $keys = func_get_args();
-        }
-
-        foreach($this->roles as $role)
-        {
-            if(in_array($role->name, $keys))
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
+##Usage
+	if( Authority::can('create', 'User') )
+	{
+		User::Create(array(
+			'username' => 'someuser@test.com'
+		));	
+	}

@@ -1,6 +1,9 @@
 {
     "name": "machuga/authority-l4",
+    "type": "library",
     "description": "A simple and flexible authorization system for PHP",
+    "keywords": ["laravel", "laravel 4", "authentication", "authorization"],
+    "homepage": "https://github.com/machuga/authority-l4",
     "authors": [
         {
             "name": "Matthew Machuga",
