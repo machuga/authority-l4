@@ -11,12 +11,12 @@ Add Authority to your composer.json file
 Add the Authority service provider to your app config
 
 	//app/config/app.php
-	'Machuga\AuthorityL4\AuthorityL4ServiceProvider',
+	'Authority\AuthorityL4\AuthorityL4ServiceProvider',
 
 **(optional)** Add the alias to your app config
 
 	//app/config/app.php
-	'Authority' => 'Machuga\AuthorityL4\Facades\Authority',
+	'Authority' => 'Authority\AuthorityL4\Facades\Authority',
 
 **(optional)** Publish the Authority Configuration File
 

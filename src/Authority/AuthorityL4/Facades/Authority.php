@@ -1,5 +1,5 @@
 <?php
-namespace Machuga\AuthorityL4\Facades;
+namespace Authority\AuthorityL4\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

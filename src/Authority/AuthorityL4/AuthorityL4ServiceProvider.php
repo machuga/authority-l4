@@ -1,5 +1,5 @@
 <?php
-namespace Machuga\AuthorityL4;
+namespace Authority\AuthorityL4;
 
 use Authority\Authority;
 use Illuminate\Support\ServiceProvider;
