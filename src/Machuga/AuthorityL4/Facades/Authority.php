@@ -1,9 +1,10 @@
-<?php namespace Machuga\AuthorityL4\Facades;
+<?php
+namespace Machuga\AuthorityL4\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class Authority extends Facade {
-
+class Authority extends Facade
+{
     /**
      * Get the registered name of the component.
      *
