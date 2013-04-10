@@ -76,15 +76,15 @@ To utilize these tables, you can add the following methods to your `User` model.
 
 	...
 
-	public function roles(){
+	public function roles() {
         return $this->belongsToMany('Role');
     }
 
-    public function permissions(){
+    public function permissions() {
         return $this->hasMany('Permission');
     }
 
-	public function hasRole($key){
+	public function hasRole($key) {
 		foreach($this->roles as $role){
 			if($role->name === $key)
 			{
@@ -108,8 +108,8 @@ Lastly, in your Authority config file which you copied over in the previous conf
 
 	return array(
 
-		'initialize' => function($authority){
-			
+		'initialize' => function($authority) {
+
 			$user = $authority->getCurrentUser();
 
 			//action aliases
@@ -117,20 +117,15 @@ Lastly, in your Authority config file which you copied over in the previous conf
         	$authority->addAlias('moderate', array('read', 'update', 'delete'));
 
         	//an example using the `hasRole` function, see below examples for more details
-        	if($user->hasRole('admin'))
-        	{
+        	if($user->hasRole('admin')) {
         		$authority->allow('manage', 'all');
 			}
 
 			// loop through each of the users permissions, and create rules
-			foreach($user->permissions as $perm)
-			{
-				if($perm->type == 'allow')
-				{
+			foreach($user->permissions as $perm) {
+				if($perm->type == 'allow') {
 					$authority->allow($perm->action, $perm->resource);
-				}
-				else
-				{
+				} else {
 					$authority->deny($perm->action, $perm->resource);
 				}
 			}
@@ -141,7 +136,7 @@ Lastly, in your Authority config file which you copied over in the previous conf
 ## General Usage
 	
 	//If you added the alias to `app/config/app.php` then you can access Authority, from any Controller, View, or anywhere else in your Laravel app like so:
-	if( Authority::can('create', 'User') ){
+	if( Authority::can('create', 'User') ) {
 		User::create(array(
 			'username' => 'someuser@test.com'
 		));	
