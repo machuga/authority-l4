@@ -18,8 +18,7 @@ class AuthorityL4ServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
-    {
+    public function boot(){
 
     }
 
@@ -28,16 +27,17 @@ class AuthorityL4ServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
-    {
+    public function register(){
         $this->package('machuga/authority-l4');
 
-        $this->app['authority'] = $this->app->share(function($app) {
+        $this->app['authority'] = $this->app->share(function($app){
             $user = $app['auth']->user();
             $authority = new Authority($user);
             $fn = $app['config']->get('authority-l4::initialize', null);
 
-            if($fn) $fn($authority, $user);
+            if($fn) {
+                $fn($authority);
+            }
 
             return $authority;
         });
@@ -48,8 +48,7 @@ class AuthorityL4ServiceProvider extends ServiceProvider
      *
      * @return array
      */
-    public function provides()
-    {
+    public function provides(){
         return array('authority');
     }
 

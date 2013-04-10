@@ -41,15 +41,15 @@ This will place a copy of the configuration file at `app/config/packages/machuga
 
 	return array(
 
-		'initialize' => function($authority, $user)
-		{
+		'initialize' => function($authority) {
+			$user = $authority->getCurrentUser();
+
 			//action aliases
 			$authority->addAlias('manage', array('create', 'read', 'update', 'delete'));
         	$authority->addAlias('moderate', array('read', 'update', 'delete'));
 
         	//an example using the `hasRole` function, see below examples for more details
-        	if($user->hasRole('admin'))
-        	{
+        	if($user->hasRole('admin')){
         		$authority->allow('manage', 'all');
 			}
 		}
@@ -76,21 +76,17 @@ To utilize these tables, you can add the following methods to your `User` model.
 
 	...
 
-	public function roles()
-    {
+	public function roles(){
         return $this->belongsToMany('Role');
     }
 
-    public function permissions()
-    {
+    public function permissions(){
         return $this->hasMany('Permission');
     }
 
-	public function hasRole($key)
-	{
-		foreach($this->roles as $role)
-		{
-			if($role->name == $key)
+	public function hasRole($key){
+		foreach($this->roles as $role){
+			if($role->name === $key)
 			{
 				return true;
 			}
@@ -112,8 +108,10 @@ Lastly, in your Authority config file which you copied over in the previous conf
 
 	return array(
 
-		'initialize' => function($authority, $user)
-		{
+		'initialize' => function($authority){
+			
+			$user = $authority->getCurrentUser();
+
 			//action aliases
 			$authority->addAlias('manage', array('create', 'read', 'update', 'delete'));
         	$authority->addAlias('moderate', array('read', 'update', 'delete'));
@@ -142,10 +140,9 @@ Lastly, in your Authority config file which you copied over in the previous conf
 
 ## General Usage
 	
-	//If you added the alias to `app/config/app.php` then you can access Authority, from any Model, Controller, View, or anywhere else in your Laravel app like so:
-	if( Authority::can('create', 'User') )
-	{
-		User::Create(array(
+	//If you added the alias to `app/config/app.php` then you can access Authority, from any Controller, View, or anywhere else in your Laravel app like so:
+	if( Authority::can('create', 'User') ){
+		User::create(array(
 			'username' => 'someuser@test.com'
 		));	
 	}
