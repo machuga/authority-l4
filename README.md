@@ -156,7 +156,7 @@ There are 5 basic functions that you need to be aware of to utilize Authority.
 
 	example 2, using an extra condition:
 	Authority::allow('manage', 'User', function($self, $user){
-		return $user->id === $self->getCurrentUser()->id;
+		return $self->getCurrentUser()->id === $user->id;
 	});
 
 - **deny**: *create* a rule that will *deny* access a resource
@@ -166,7 +166,7 @@ There are 5 basic functions that you need to be aware of to utilize Authority.
 
 	example 2, using an extra condition:
 	Authority::deny('delete', 'User', function ($self, $user) {
-        return $user->id === $self->getCurrentUser()->id;
+        return $self->getCurrentUser()->id === $user->id;
     });
 
 - **can**: check if a use *can* access a resource
