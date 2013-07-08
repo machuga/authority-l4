@@ -192,7 +192,7 @@ There are 5 basic functions that you need to be aware of to utilize Authority.
         });
     ```
 
-- **can**: check if a use *can* access a resource
+- **can**: check if a user *can* access a resource
 	
 	example:
 	```php
