@@ -18,6 +18,8 @@ class CreatePermissionsTable extends Migration
             $table->string('action');
             $table->string('resource');
             $table->timestamps();
+            
+            $table->index('user_id');
         });
     }
 
