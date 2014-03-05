@@ -6,22 +6,7 @@ use Illuminate\Support\ServiceProvider;
 
 class AuthorityL4ServiceProvider extends ServiceProvider
 {
-    /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = false;
-
-    /**
-     * Bootstrap the application events.
-     *
-     * @return void
-     */
-    public function boot(){
-
-    }
-
+    
     /**
      * Register the service provider.
      *
@@ -41,15 +26,8 @@ class AuthorityL4ServiceProvider extends ServiceProvider
 
             return $authority;
         });
-    }
-
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides(){
-        return array('authority');
+        
+        $this->app->alias('authority', 'Authority\Authority');
     }
 
 }
