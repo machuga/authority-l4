@@ -5,7 +5,7 @@
 Add Authority to your composer.json file to require Authority
 
 	require : {
-		"laravel/framework": "4.0.*",
+		"laravel/framework": "~4",
         "machuga/authority-l4" : "dev-master"
     }
 
