@@ -1,3 +1,6 @@
+# THIS REPO IS DEPRECATED
+I no longer use PHP enough to be able to work on Authority so it's time to EOL it.  If you're interested in taking it over, ping me in an issue with "@machuga".
+
 # Authority-L4
 ## A simple and flexible authorization system for Laravel 4
 
